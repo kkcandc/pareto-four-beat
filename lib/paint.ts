@@ -89,8 +89,8 @@ export function paintBeams(
     ctx.save();
     ctx.lineCap = "round";
     ctx.strokeStyle = beam.color;
-    ctx.globalAlpha = 0.16 * beam.strength;
-    ctx.lineWidth = beam.width + 7;
+    ctx.globalAlpha = 0.28 * beam.strength;
+    ctx.lineWidth = beam.width + 8;
     trace(ctx, beam.curve);
     ctx.stroke();
     ctx.globalAlpha = 0.85 * beam.strength;

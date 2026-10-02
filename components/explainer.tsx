@@ -105,14 +105,23 @@ export function Explainer() {
   }, []);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const rawTime = params.get("t");
+    const requested = rawTime == null || rawTime.trim() === "" ? Number.NaN : Number(rawTime);
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
+    if (Number.isFinite(requested)) {
+      playingRef.current = false;
+      timeRef.current = Math.min(DURATION, Math.max(0, requested));
+      setPlaying(false);
+      setTime(timeRef.current);
+    } else if (reducedMotion) {
       playingRef.current = false;
       timeRef.current = CHAPTERS[0].hero;
       setReduced(true);
       setPlaying(false);
       setTime(CHAPTERS[0].hero);
     }
+    if (reducedMotion) setReduced(true);
 
     let raf = 0;
     let last = performance.now();
@@ -284,7 +293,7 @@ export function Explainer() {
           </div>
 
           <div className="stack">
-            <div className="board" ref={boardRef} style={{ opacity: frame.boardOpacity }} aria-hidden={settled}>
+            <div className="board" ref={boardRef} style={{ opacity: frame.boardOpacity }} aria-hidden={settled || undefined}>
               <canvas ref={beamRef} className="beams" aria-hidden="true" />
               <div className="flow">
                 <article className="card prompt" data-anchor="prompt" style={{ opacity: frame.promptOpacity }}>
