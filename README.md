@@ -48,4 +48,6 @@ No API keys. No paid APIs. The stand-in answers are written into the page.
 
 ## Deploy
 
-The Vercel project belongs on Kenny Kline’s personal account only, attached to this `kkcandc/pareto-four-beat` repo. Do not publish it under an Unbiased team or as an official product surface.
+Live site: https://pareto-four-beat.vercel.app
+
+The Vercel project is `pareto-four-beat` on Kenny Kline’s personal team (`kenny-klines-projects`), connected to this `kkcandc/pareto-four-beat` repo. Do not publish it under an Unbiased team or as an official product surface.
